@@ -142,4 +142,4 @@ console.log("Is it a valid trip: ", isValidTrips(shipment, trips));
 Code is in github 
 ```
 [Git URL](https://github.com/Prashantkry/dashboard)
-[Hosted URL]()
+[Hosted URL](https://dashboard-prashantkry.netlify.app/)
