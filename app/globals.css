@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* middle panel css */
+.upcomingBg {
+  background: linear-gradient(90deg, #ffffff 0%, #ffcb49 100%);
+}
+.OngoingBg {
+  background: linear-gradient(90deg, #ffffff 0%, #7464ff 100%);
+}
+.CompletedBg {
+  background: linear-gradient(90deg, #ffffff 0%, #4fd2b5 100%);
+}

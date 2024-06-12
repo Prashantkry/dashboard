@@ -1,29 +1,21 @@
-import React from 'react';
-
-interface Activity {
-  des: string;
-}
+"use client";
+import React, { useState } from 'react';
 
 const RightPanel: React.FC = () => {
-  const activities: Activity[] = [
-    { des: 'Gurpreet Singh (Dispatch team) has created Load No. I-I-AAA-1325' },
-    { des: 'Aman (Driver) Picked Up goods at Location_Name for Load No. I-I-AAA-1325' },
-    { des: 'Gurpreet Singh (Dispatch team) has created Load No. I-I-AAA-132' },
-    { des: 'Load No. I-I-AAA-1325 will start added by Gurpreet Singh' },
-  ];
-
-  const scheduledActivities: Activity[] = [
-    { des: 'Load No. I-I-AAA-1325 will be delivered by Aman (Driver)' },
-    { des: 'Aman (Driver) will Pick Up goods at Location_Name for Load No. I-I-AAA-1325' },
-    { des: 'Load No. I-I-AAA-1325 will start added by Gurpreet Singh' },
-    { des: 'Load No. I-I-AAA-1325 will start added by Gurpreet Singh' },
-  ];
+  const [view, setView] = useState({ completed: true, scheduled: true })
+  const handleView = (type: string) => {
+    if (type === 'Completed') {
+      setView((prevState) => ({ ...prevState, completed: !prevState.completed }))
+    } else if (type === 'Scheduled') {
+      setView((prevState) => ({ ...prevState, scheduled: !prevState.scheduled }))
+    }
+  }
 
   return (
     <div className="w-[24%] border-0 border-red-600 h-full shadow-lg py-10 px-5">
       {/* Heading */}
       <p className="text-[#000000] font-bold">Today&apos;s Highlights (14)</p>
-      
+
       {/* Date */}
       <p className="text-[#676666] text-xs">19 Mar 2024</p>
 
@@ -41,27 +33,34 @@ const RightPanel: React.FC = () => {
         </div>
       </div>
 
-      {/* Activities */}
+      {/* Completed Activities */}
       <div className="flex items-center justify-between font-bold my-5">
         <p>Completed Activities (14)</p>
-        <button className="text-blue-500 font-semibold text-sm underline underline-offset-2">View All</button>
+        <button onClick={() => handleView('Completed')} className="text-[#111111] font-semibold text-xs underline underline-offset-2">View All</button>
       </div>
-      <div className="text-sm">
-        {activities.map((activity, index) => (
-          <p className='border px-2 py-1 my-1' key={index}>{activity.des}</p>
-        ))}
-      </div>
+      {view.completed && (
+        <div className="text-xs rounded font-semibold border-2 border-b-0 border-[#CBCBCB]">
+          <p className='border-b-2 border-[#CBCBCB] px-2 py-1'><span className='text-[#1A3875]'>Gurpreet Singh</span> <span className='text-[#676666]'>(Dispatch team) has created</span> Load No. I-I-AAA-1325</p>
+          <p className='border-b-2 border-[#CBCBCB] px-2 py-1'>Aman (Driver) Picked Up <span className='text-[#676666]'>goods at</span> Location_Name <span className='text-[#676666]'>for</span> Load No. I-I-AAA-1325</p>
+          <p className='border-b-2 border-[#CBCBCB] px-2 py-1'><span className='text-[#1A3875]'>Gurpreet Singh</span> <span className='text-[#676666]'>(Dispatch team) has created</span> Load No. I-I-AAA-132</p>
+          <p className='border-b-2 border-[#CBCBCB] px-2 py-1'>Load No. I-I-AAA-1325 <span className='text-[#676666]'>will start added by</span> <span className='text-[#1A3875]'>Gurpreet Singh</span></p>
+        </div>
+      )}
 
       {/* Scheduled Activities */}
       <div className="flex items-center justify-between font-bold my-5">
         <p>Scheduled Activities (14)</p>
-        <button className="text-blue-500  font-semibold text-sm  underline underline-offset-2">View All</button>
+        {/* <button onClick={() => handleView('Scheduled')} className="text-[#111111]  font-semibold text-sm  underline underline-offset-2"> {view.completed ? 'Hide' : 'View All'}</button> */}
+        <button onClick={() => handleView('Scheduled')} className="text-[#111111]  font-semibold text-xs  underline underline-offset-2">View All</button>
       </div>
-      <div className="text-sm">
-        {scheduledActivities.map((activity, index) => (
-          <p key={index}>{activity.des}</p>
-        ))}
-      </div>
+      {view.scheduled && (
+        <div className="text-xs rounded font-semibold border-2 border-b-0 border-[#CBCBCB]">
+          <p className='border-b-2 px-2 py-1 border-[#CBCBCB]' >Load No. I-I-AAA-1325 will be delivered by <span className='text-[#1A3875]'>Aman (Driver)</span></p>
+          <p className='border-b-2 px-2 py-1 border-[#CBCBCB]' ><span className='text-[#1A3875]'>Aman</span> (Driver) will Pick Up <span className='text-[#676666]'>goods at</span> Location_Name for Load No. I-I-AAA-1325</p>
+          <p className='border-b-2 px-2 py-1 border-[#CBCBCB]' >Load No. I-I-AAA-1325 <span className='text-[#676666]'>will start added by</span> <span className='text-[#1A3875]'>Gurpreet Singh</span></p>
+          <p className='border-b-2 px-2 py-1 border-[#CBCBCB]' >Load No. I-I-AAA-1325 <span className='text-[#676666]'>will start added by</span> <span className='text-[#1A3875]'>Gurpreet Singh</span></p>
+        </div>
+      )}
     </div>
   );
 };
