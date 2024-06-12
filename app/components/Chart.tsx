@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const centerTextPlugin = {
     id: 'centerTextPlugin',
-    beforeDraw: function (chart) {
+    beforeDraw: function (chart:any) {
         const { width, height, ctx } = chart;
         ctx.restore();
         // const fontSize = (height / 114).toFixed(2);
